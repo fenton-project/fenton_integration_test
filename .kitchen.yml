@@ -1,0 +1,63 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: chef_zero
+
+verifier:
+  name: inspec
+  format: documentation
+
+platforms:
+  # https://wiki.ubuntu.com/LTS
+  - name: ubuntu-14.04
+  - name: ubuntu-12.04
+  # https://wiki.debian.org/LTS
+  - name: debian-7.11
+  - name: debian-8.1
+  # https://wiki.centos.org/FAQ/General#head-fe8a0be91ee3e7dea812e8694491e1dde5b75e6d
+  - name: centos-7.1
+  - name: centos-6.8
+  # need to create an oracle box
+  # https://github.com/chef/bento#build-your-own-bento-boxes
+  # http://www.oracle.com/us/support/library/elsp-lifetime-069338.pdf
+  # - name: oracle-6.5
+  # - name: oracle-7.1
+  # https://fedoraproject.org/wiki/Fedora_Release_Life_Cycle
+  - name: fedora-24
+
+suites:
+  - name: fenton-server
+    run_list:
+      - recipe[fenton_integration_test::server]
+    driver:
+      network:
+        - ["private_network", {ip: "192.168.200.10"}]
+      synced_folders:
+        - ["../../fenton_server", "/fenton_server"]
+    includes:
+      - ubuntu-14.04
+  - name: fenton-shell
+    run_list:
+      - recipe[fenton_integration_test::shell]
+    attributes:
+      fenton_integration_test:
+        fenton_base_url: http://192.168.200.10:9292
+        tkmachine: '192.168.200.20'
+    driver:
+      network:
+        - ["private_network", {ip: "192.168.200.11"}]
+      synced_folders:
+        - ["../../fenton_shell", "/fenton_shell"]
+    includes:
+      - ubuntu-14.04
+  - name: machine
+    run_list:
+      - recipe[fenton_integration_test::machine]
+    attributes:
+      fenton_integration_test:
+        fenton_base_url: http://192.168.200.10:9292
+    driver:
+      network:
+        - ["private_network", {ip: "192.168.200.20"}]

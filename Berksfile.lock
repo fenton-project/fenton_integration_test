@@ -1,0 +1,7 @@
+DEPENDENCIES
+  fenton_integration_test
+    path: .
+    metadata: true
+
+GRAPH
+  fenton_integration_test (0.1.0)

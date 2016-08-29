@@ -1,0 +1,69 @@
+# Managed by Chef
+# See sshd_config(5) for more information
+#
+
+Port 22
+AddressFamily any
+ListenAddress <%= @listen_address %>
+
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_IDENTIFICATION LC_ALL
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AllowGroups <%= @allow_groups %>
+AllowAgentForwarding no
+AllowTcpForwarding no
+AuthorizedKeysFile /etc/ssh/authorized_keys/%u
+# Banner
+ChallengeResponseAuthentication no
+ChrootDirectory none
+Ciphers <%= @ciphers %>
+ClientAliveCountMax 3
+ClientAliveInterval 600
+Compression delayed
+GatewayPorts no
+GSSAPIAuthentication no
+GSSAPICleanupCredentials yes
+HostbasedAuthentication no
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_dsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+IgnoreRhosts yes
+IgnoreUserKnownHosts yes
+KerberosAuthentication no
+KerberosOrLocalPasswd no
+KerberosTicketCleanup yes
+<%= @kex_algorithms %>
+LoginGraceTime 30s
+LogLevel VERBOSE
+MACs <%= @macs %>
+MaxAuthTries 2
+MaxSessions 10
+MaxStartups 10:30:100
+PasswordAuthentication no
+PermitEmptyPasswords no
+PermitRootLogin no
+PermitTunnel no
+PermitUserEnvironment no
+# PidFile
+PrintLastLog yes
+PrintMotd no
+Protocol 2
+PubkeyAuthentication yes
+RhostsRSAAuthentication no
+RSAAuthentication no
+# ServerKeyBits
+StrictModes yes
+SyslogFacility AUTH
+TCPKeepAlive no
+UseDNS yes
+UseLogin no
+UsePAM no
+UsePrivilegeSeparation <%= @use_privilege_separation %>
+X11DisplayOffset 10
+X11Forwarding no
+X11UseLocalhost yes
+TrustedUserCAKeys /etc/ssh/trusted_user_ca_key
+Subsystem sftp internal-sftp
+Match Group sftpusers
+  ChrootDirectory /sftp/%u
+  ForceCommand internal-sftp
