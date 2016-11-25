@@ -35,7 +35,7 @@ suites:
       network:
         - ["private_network", {ip: "192.168.200.10"}]
       synced_folders:
-        - ["../../fenton_server", "/fenton_server"]
+        - ["../fenton_server", "/fenton_server"]
     includes:
       - ubuntu-14.04
   - name: fenton-shell
@@ -49,7 +49,7 @@ suites:
       network:
         - ["private_network", {ip: "192.168.200.11"}]
       synced_folders:
-        - ["../../fenton_shell", "/fenton_shell"]
+        - ["../fenton_shell", "/fenton_shell"]
     includes:
       - ubuntu-14.04
   - name: machine
