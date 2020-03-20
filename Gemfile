@@ -14,13 +14,13 @@ group :style do
 end
 
 group :unit do
-  gem 'berkshelf'
+  gem 'berkshelf', '>= 5.2.0'
   gem 'chefspec'
-  gem 'simplecov'
+  gem 'simplecov', '>= 0.12.0'
 end
 
 group :integration do
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
-  gem 'kitchen-inspec'
+  gem 'kitchen-inspec', '>= 0.16.1'
 end
