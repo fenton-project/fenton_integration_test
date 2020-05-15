@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 group :style, :unit, :integration do
-  gem 'chef'
+  gem 'chef', '>= 12.16.42'
   gem 'rake'
   gem 'bundler-audit'
 end
@@ -15,7 +15,7 @@ end
 
 group :unit do
   gem 'berkshelf'
-  gem 'chefspec'
+  gem 'chefspec', '>= 5.3.0'
   gem 'simplecov'
 end
 
