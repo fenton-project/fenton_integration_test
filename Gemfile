@@ -9,7 +9,7 @@ group :style, :unit, :integration do
 end
 
 group :style do
-  gem 'foodcritic'
+  gem 'foodcritic', '>= 8.1.0'
   gem 'rubocop'
 end
 
