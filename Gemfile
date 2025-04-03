@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 group :style, :unit, :integration do
-  gem 'chef'
+  gem 'chef', '>= 18.7.3'
   gem 'rake'
   gem 'bundler-audit'
 end
