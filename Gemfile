@@ -14,7 +14,7 @@ group :style do
 end
 
 group :unit do
-  gem 'berkshelf'
+  gem 'berkshelf', '>= 7.0.0'
   gem 'chefspec'
   gem 'simplecov'
 end
